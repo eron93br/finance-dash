@@ -14,10 +14,6 @@ fixed_year = 2024
 jan_1 = datetime.date(fixed_year, 1, 1)
 dec_31 = datetime.date(fixed_year, 12, 31)
 
-# ----- Cached data loaders --------
-@st.cache_data(ttl=3600)  # Cache for 1 hour
-def load_moto_data():
-    return pd.read_csv('data/Motos.csv')
 
 @st.cache_data(ttl=3600)
 def load_currency_data(start_date, end_date):
@@ -43,7 +39,6 @@ with st.sidebar:
     )
 
 # Load data
-mdf = load_moto_data()
 moedas = load_currency_data(start_date, end_date)
 selic = load_selic_data(start_date, end_date)
 ipca = load_ipca_data(start_date, end_date)
